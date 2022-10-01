@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITAL CLOCK</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="title">HELLO BUDY!</h1>
+    <h2></h2>
+    <h4></h4>
+    <h1 class="clock"></h1>
+
+    <script>
+        const currentTime = () => {
+            const tagline = document.querySelector('h2');
+            const clock = document.querySelector('.clock');
+            const dateTime = document.querySelector('h4');
+
+            let date = new Date();
+            let hour = date.getHours();
+            let minute = date.getMinutes();
+            let second = date.getSeconds();
+
+            let day = date.getDate();
+            let month  = date.getMonth()+1;
+            let year = date.getFullYear();
+
+            hour = hour < 10 ? `0${hour}` : hour;
+            minute = minute < 10 ? `0${minute}` : minute;
+            second = second < 10 ? `0${second}` : second;
+            
+            day = day < 10 ? `0${day}` : day;
+            month = month < 10 ? `0${month}` : month;
+
+            if(hour >= 12 && hour < 18) {
+                tagline.innerText  = 'Good Afternoon...';
+            }
+            else if (hour >= 18 && hour < 22) {
+                tagline.innerText  = 'Good Evening...';
+            }
+            else if (hour >= 22 && hour < 23) {
+                tagline.innerText  = 'Good Night...';
+            } 
+            else if (hour >= 23 || hour < 4) {
+                tagline.innerText  = 'GO TO BED IDIOT!!';
+            }
+            else {
+                tagline.innerText  = 'Good Morning...';
+            }
+
+            let dateNow = `${day}/${month}/${year}`;
+            let time = `${hour}:${minute}:${second}`;
+
+            dateTime.innerText = dateNow;
+            clock.innerText = time;
+        };
+
+        currentTime();
+        setInterval(currentTime, 1000);
+    </script>
+</body>
+</html>
